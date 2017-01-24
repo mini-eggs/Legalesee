@@ -17,6 +17,16 @@ const Style = {
     fontWeight:'600', 
     justifyContent:'center', 
     alignItems:'center'
+  },
+  defaultSceneStyles: {
+    flex: 1,
+    backgroundColor: '#fff',
+    shadowColor: null,
+    shadowOffset: null,
+    shadowOpacity: null,
+    shadowRadius: null,
+    marginTop: 0,
+    marginBottom: 0
   }
 }
 

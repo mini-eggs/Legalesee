@@ -3,6 +3,7 @@
  */
 
 import React from 'react'
+// $FlowFixMe
 import { View, Text } from 'react-native'
 
 class Discover extends React.Component {

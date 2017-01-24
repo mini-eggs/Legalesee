@@ -3,6 +3,7 @@
  */
 
 import React from 'react'
+// $FlowFixMe
 import { Scene, Modal, ActionConst } from 'react-native-router-flux'
 
 import LaunchComp from './components.examples/Launch'
