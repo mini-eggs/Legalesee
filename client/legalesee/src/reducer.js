@@ -8,7 +8,7 @@ import { Reducer, Router } from 'react-native-router-flux'
 // $FlowFixMe
 import Sizes from './styles/device'
 // $FlowFixMe
-import Style from './styles/styles'
+import Styles from './styles/styles'
 
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params)
@@ -19,7 +19,7 @@ const reducerCreate = params => {
 }
 
 const getSceneStyle = (props, computedProps) => {
-  const style = Style.defaultSceneStyles
+  const style = { ...Styles.defaultSceneStyles }
   if (computedProps.isActive) {
     style.marginTop = computedProps.hideNavBar ? 0 : Sizes.navigationBarHeight
     style.marginBottom = computedProps.hideTabBar ? 0 : Sizes.tabBarHeight
