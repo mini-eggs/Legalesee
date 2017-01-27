@@ -4,6 +4,8 @@
 
 import React from 'react'
 // $FlowFixMe
+import { Keyboard } from 'react-native'
+// $FlowFixMe
 import { Actions } from 'react-native-router-flux'
 
 class BaseComponent extends React.Component {
@@ -16,6 +18,10 @@ class BaseComponent extends React.Component {
 
   componentWillMount () {
     Actions.fn.closeDrawer()
+  }
+
+  componentWillUnmount () {
+    Keyboard.dismiss() 
   }
 
 }
