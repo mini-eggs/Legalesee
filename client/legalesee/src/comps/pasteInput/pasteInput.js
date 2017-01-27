@@ -30,7 +30,7 @@ class PasteInput extends BaseComponent {
 
   setState: Function
 
-  constructor(props: Object) {
+  constructor (props: Object) {
     super(props)
     this.state = {
       content: ' '

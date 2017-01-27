@@ -20,7 +20,7 @@ const style = {
 }
 
 class Discover extends BaseComponent {
-  render() {
+  render () {
     return (
       <View style={style.container}>
         <Button

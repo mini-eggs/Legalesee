@@ -24,7 +24,7 @@ const style = {
 }
 
 class Discover extends React.Component {
-  render() {
+  render () {
     return (
       <View style={style.container}>
         <Text style={style.text}>
