@@ -2,15 +2,21 @@
  * @flow
  */
 
+ const primaryColor = '#493267'
+ const backgroundColor = '#4e4e4e'
+
 const Theme = {
-  primaryColor: '#a2aab0',
-  secondaryColor: '#4c586f',
+  primaryColor: primaryColor,
+  secondaryColor: '#9e379f',
+  backgroundColor: backgroundColor,
   button: {
-    borderRadius: 1000,
+    backgroundColor: primaryColor,
+    borderRadius: 5,
     textStyle: {},
     fontSize: 18,
     raised: true,
-    large: true
+    large: false,
+    buttonStyle: {}
   },
   spacer: {
     height: 15

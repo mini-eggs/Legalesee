@@ -4,15 +4,20 @@
 
 import React from 'react'
 // $FlowFixMe
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import { Button, Spacer } from '../defaults/defaults'
+import Theme from '../../styles/theme'
 
 const style = {
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'stretch',
-    padding: 25
+    padding: 25,
+    backgroundColor: Theme.backgroundColor
+  },
+  text: {
+    color: '#fff'
   }
 }
 
@@ -20,6 +25,10 @@ class Discover extends React.Component {
   render() {
     return (
       <View style={style.container}>
+        <Text style={style.text}>
+          Placeholder
+        </Text>
+        <Spacer/>
         <Button
           onPress={ e => alert('Copy & Paste') }
           // icon={{name: 'touch-app', type: 'material-icons'}}

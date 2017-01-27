@@ -13,11 +13,10 @@ const Button = (props: Object) => {
   return (
     <RNEButton 
       onPress={ e => alert('onPress') } 
-      backgroundColor={Theme.secondaryColor} 
       {...Theme.button}
       {...props}
     />
-  )
+  )  
 }
 
 export { Button }

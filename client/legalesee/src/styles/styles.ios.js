@@ -10,7 +10,7 @@ const Style = {
   navigationBarStyle: {
     backgroundColor: Theme.primaryColor, 
     borderBottomColor: 'transparent', 
-    borderBottomWidth: Sizes.navigationBarHeight
+    borderBottomWidth: Sizes.navigationBarHeight,
   },
   titleStyle: {
     color:'#fff', 
@@ -20,7 +20,7 @@ const Style = {
   },
   defaultSceneStyles: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#cecece',
     shadowColor: null,
     shadowOffset: null,
     shadowOpacity: null,
