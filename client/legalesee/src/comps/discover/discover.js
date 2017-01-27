@@ -5,7 +5,10 @@
 import React from 'react'
 // $FlowFixMe
 import { View } from 'react-native'
-import { Button, Spacer } from '../defaults/defaults'
+// $FlowFixMe
+import { Actions } from 'react-native-router-flux'
+import { Button, Spacer, defaultScene as discoverScene, BaseComponent } from '../defaults/defaults'
+export { discoverScene }
 
 const style = {
   container: {
@@ -16,21 +19,23 @@ const style = {
   }
 }
 
-class Discover extends React.Component {
+class Discover extends BaseComponent {
   render() {
     return (
       <View style={style.container}>
         <Button
-          onPress={ e => alert('Copy & Paste') }
+          onPress={ e => Actions.PasteInput() }
           // icon={{name: 'touch-app', type: 'material-icons'}}
           title='Copy & Paste'
         />
+        <Spacer/>
         <Spacer/>
         <Button
           onPress={ e => alert('Upload Photo') }
           // icon={{name: 'info', type: 'material-icons'}}
           title='Upload Photo'
         />
+        <Spacer/>
         <Spacer/>
         <Button
           onPress={ e => alert('Tutorial') }

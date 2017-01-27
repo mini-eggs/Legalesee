@@ -4,7 +4,7 @@
 
 import React from 'react'
 // $FlowFixMe
-import { Reducer, Router } from 'react-native-router-flux'
+import { Reducer, Router, Actions, ActionConst } from 'react-native-router-flux'
 // $FlowFixMe
 import Sizes from './styles/device'
 // $FlowFixMe

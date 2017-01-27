@@ -5,6 +5,8 @@
 import React from 'react'
 // $FlowFixMe
 import { View, Text } from 'react-native'
+// $FlowFixMe
+import { Actions } from 'react-native-router-flux'
 import { Button, Spacer } from '../defaults/defaults'
 import Theme from '../../styles/theme'
 
@@ -30,7 +32,7 @@ class Discover extends React.Component {
         </Text>
         <Spacer/>
         <Button
-          onPress={ e => alert('Copy & Paste') }
+          onPress={ e => Actions.PasteInput() }
           // icon={{name: 'touch-app', type: 'material-icons'}}
           title='Copy & Paste'
         />
