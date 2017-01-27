@@ -14,6 +14,7 @@ const leftIcon = () => {
   return (
     <Icon 
       size={28}
+      iconStyle={Style.navIconStyle}
       name='menu' 
       type='material-icons'
       color='#fff' 
@@ -25,6 +26,7 @@ const leftIcon = () => {
 
 const defaultScene = {
   navigationBarStyle: Style.navigationBarStyle,
+  leftButtonStyle: Style.leftButtonStyle,
   titleStyle: Style.titleStyle,
   type: ActionConst.REPLACE,
   renderLeftButton: leftIcon

@@ -14,6 +14,7 @@ const backIcon = () => {
   return (
     <Icon 
       size={28}
+      iconStyle={Style.navIconStyle}
       name='arrow-back' 
       type='material-icons'
       color='#fff' 
