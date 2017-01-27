@@ -43,8 +43,8 @@ const Routes = () => {
     <ReducerRouterLayer>
       <Scene key="drawer" component={DrawerComp} open={false} >
         <Scene key='root' hideTabBar>
-          <Scene key='Discover' title='Discover' component={DiscoverComp} {...defaultScene} />
-          <Scene key='launch' title='Launch' component={LaunchComp} initial />
+          <Scene key='Discover' title='Discover' component={DiscoverComp} {...defaultScene} initial />
+          <Scene key='launch' title='Launch' component={LaunchComp} />
         </Scene>
       </Scene>
     </ReducerRouterLayer>

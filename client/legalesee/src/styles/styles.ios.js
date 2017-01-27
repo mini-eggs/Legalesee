@@ -20,7 +20,7 @@ const Style = {
   },
   defaultSceneStyles: {
     flex: 1,
-    backgroundColor: '#cecece',
+    backgroundColor: '#e3e3e3',
     shadowColor: null,
     shadowOffset: null,
     shadowOpacity: null,
