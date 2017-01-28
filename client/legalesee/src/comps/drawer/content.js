@@ -9,13 +9,16 @@ import { View, Text } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { Button, Spacer } from '../defaults/defaults'
 import Theme from '../../styles/theme'
+// $FlowFixMe
+import Sizes from '../../styles/device'
 
 const style = {
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'stretch',
     padding: 25,
+    paddingTop: Sizes.navigationBarHeight,
     backgroundColor: Theme.backgroundColor
   },
   text: {
@@ -28,7 +31,7 @@ class Discover extends React.Component {
     return (
       <View style={style.container}>
         <Text style={style.text}>
-          Placeholder
+          Drawer menu
         </Text>
         <Spacer/>
         <Button
@@ -41,6 +44,12 @@ class Discover extends React.Component {
           onPress={ e => alert('Upload Photo') }
           // icon={{name: 'info', type: 'material-icons'}}
           title='Upload Photo'
+        />
+        <Spacer/>
+        <Button
+          onPress={ e => alert('Enter URL') }
+          // icon={{name: 'info', type: 'material-icons'}}
+          title='Enter URL'
         />
         <Spacer/>
         <Button

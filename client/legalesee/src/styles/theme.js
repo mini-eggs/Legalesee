@@ -9,6 +9,7 @@ const Theme = {
   primaryColor: primaryColor,
   secondaryColor: '#9e379f',
   backgroundColor: backgroundColor,
+  fontSize: 14,
   button: {
     backgroundColor: primaryColor,
     borderRadius: 5,

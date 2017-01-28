@@ -7,6 +7,7 @@ import React from 'react'
 import { View, TextInput, Alert } from 'react-native'
 // $FlowFixMe
 import { Actions } from 'react-native-router-flux'
+import Theme from '../../styles/theme'
 import { Button, Spacer, backScene as pasteInputScene, BaseComponent } from '../defaults/defaults'
 export { pasteInputScene }
 
@@ -18,7 +19,9 @@ const style = {
     padding: 25
   },
   TextInput: {
-    minHeight: 40
+    textAlignVertical: 'top',
+    minHeight: 40,
+    fontSize: Theme.fontSize
   }
 }
 
@@ -69,6 +72,7 @@ class PasteInput extends BaseComponent {
           autoCapitalize="none" 
           autoCorrect={false} 
           autoFocus={true} 
+          multiline={true}
           keyboardType="default"
           onSubmitEditing={this.complete.bind(this)} 
           returnKeyType="go"

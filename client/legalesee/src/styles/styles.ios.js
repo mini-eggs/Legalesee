@@ -13,7 +13,8 @@ const Style = {
     borderBottomWidth: Sizes.navigationBarHeight,
   },
   navIconStyle: {
-    marginTop: 5
+    marginTop: 2.5,
+    marginBottom: -2.5
   },
   titleStyle: {
     color:'#fff', 

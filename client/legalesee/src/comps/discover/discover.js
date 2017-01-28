@@ -8,18 +8,30 @@ import { View } from 'react-native'
 // $FlowFixMe
 import { Actions } from 'react-native-router-flux'
 import { Button, Spacer, defaultScene as discoverScene, BaseComponent } from '../defaults/defaults'
+import { getPhoto, errorHandler } from '../../general/general'
 export { discoverScene }
 
 const style = {
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'stretch',
     padding: 25
   }
 }
 
 class Discover extends BaseComponent {
+
+  async ImageInput () {
+    try {
+      const imageData = await getPhoto()
+      Actions.ImageInput({ imageData: imageData })
+    }
+    catch( err ) {
+      errorHandler( err )
+    }
+  }
+
   render () {
     return (
       <View style={style.container}>
@@ -31,15 +43,19 @@ class Discover extends BaseComponent {
         <Spacer/>
         <Spacer/>
         <Button
-          onPress={ e => alert('Upload Photo') }
-          // icon={{name: 'info', type: 'material-icons'}}
+          onPress={ e => this.ImageInput() }
           title='Upload Photo'
         />
         <Spacer/>
         <Spacer/>
         <Button
+          onPress={ e => alert('Enter URL') }
+          title='Enter URL'
+        />
+        <Spacer/>
+        <Spacer/>
+        <Button
           onPress={ e => alert('Tutorial') }
-          // icon={{name: 'info', type: 'material-icons'}}
           title='Tutorial'
         />
       </View>
