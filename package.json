@@ -1,0 +1,8 @@
+{
+  "name": "legalesee_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mini-eggs/Legalesee.git",
+  "author": "Evan <evan@crowdhubapps.com>",
+  "license": "MIT"
+}

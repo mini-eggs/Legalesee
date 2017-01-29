@@ -65,7 +65,8 @@ const ImageComp = ( props: Object ) => {
 class ImageInput extends BaseComponent {
 
   state: {
-    imageData: string
+    imageData: string,
+    imageUrl: string
   }
 
   setState: Function
@@ -74,7 +75,7 @@ class ImageInput extends BaseComponent {
     super(props)
     this.state = {
       imageData: props.imageData,
-      imageUrl: false
+      imageUrl: ''
     }
   }
 
@@ -93,16 +94,20 @@ class ImageInput extends BaseComponent {
     }
   }
 
+  getText () {
+    alert( this.state.imageUrl )
+  }
+
   render () {
     return (
       <View 
         style={style.container}
       >
         {
-          this.state.imageUrl 
+          this.state.imageUrl.length > 0
             ? 
             <ImageComp 
-              onPress={ () => {  } } 
+              onPress={ () => { this.getText() } } 
               uri={ this.state.imageUrl } 
             /> 
             : 
