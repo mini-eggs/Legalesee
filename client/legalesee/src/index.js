@@ -6,6 +6,8 @@ import React from 'react'
 // $FlowFixMe
 import { StatusBar } from 'react-native'
 // $FlowFixMe
+import codePush from 'react-native-code-push'
+// $FlowFixMe
 import { Actions } from 'react-native-router-flux'
 import Routes from './routes'
 
@@ -18,7 +20,18 @@ Actions.fn = {
   closeDrawer: () => { alert( 'init in ./comps/drawer/drawer' ) }
 }
 
+/* INITIALIZE CODE PUSH */
+const codePushOptions = {checkFrequency: codePush.CheckFrequency.ON_APP_RESUME}
+
 class Legalesee extends React.Component {
+
+  componentDidMount() {
+    codePush.sync({
+      updateDialog: true,
+      installMode: codePush.InstallMode.IMMEDIATE
+    })
+  }
+
   render() {
     return (
       <Routes/>
@@ -26,4 +39,4 @@ class Legalesee extends React.Component {
   }
 }
 
-export default Legalesee
+export default codePush(codePushOptions)(Legalesee)

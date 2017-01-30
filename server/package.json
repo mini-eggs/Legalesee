@@ -5,7 +5,7 @@
     "node": "6.9.2"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node --max_old_space_size=256 --gc_interval=100 --optimize_for_size src/index.js"
   },
   "dependencies": {
     "babel-core": "^6.22.1",

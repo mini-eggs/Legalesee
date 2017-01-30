@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">NqYgJqWnDlnTFT08x0nMo0QpzmVYNJhNZWN7f</string>
     <string name="app_name">legalesee</string>
 </resources>

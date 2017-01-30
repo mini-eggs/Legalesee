@@ -6,7 +6,11 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
 		"flow": "node_modules/.bin/flow",
-		"flow-stop": "node_modules/.bin/flow stop"
+		"flow-stop": "node_modules/.bin/flow stop",
+    "prep-ios": "code-push release-react legalesee-ios ios --plistFile \"ios/legalesee/Info.plist\" --mandatory",
+    "prep-android": "code-push release-react legalesee-android android --mandatory",
+    "release-ios": "code-push promote legalesee-ios Staging Production",
+    "release-android": "code-push promote legalesee-android Staging Production"
 	},
 	"dependencies": {
 		"@exponent/react-native-fade-in-image": "^1.1.1",
@@ -16,9 +20,11 @@
 		"react-native-button": "^1.7.1",
 		"react-native-drawer": "^2.3.0",
 		"react-native-elements": "^0.9.3",
+		"react-native-emoji": "^1.2.0",
 		"react-native-image-picker": "0.24",
-		"react-native-progress": "^3.2.0",
+		"react-native-progress": "^3.2.0",  
 		"react-native-router-flux": "^3.37.0",
+    "react-native-code-push": "^1.16.1-beta",
 		"react-native-vector-icons": "^4.0.0"
 	},
 	"devDependencies": {

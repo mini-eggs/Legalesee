@@ -6,7 +6,9 @@ import React from 'react'
 // $FlowFixMe
 import { View, Image } from 'react-native'
 // $FlowFixMe
-import { Row, Col, Grid } from 'react-native-elements'
+import Emoji from 'react-native-emoji'
+// $FlowFixMe
+import { Row, Col, Grid, Text } from 'react-native-elements'
 // $FlowFixMe
 import FadeIn from '@exponent/react-native-fade-in-image'
 // $FlowFixMe
@@ -16,7 +18,7 @@ import * as Progress from 'react-native-progress'
 import { Button, Spacer, backScene as imageInputScene, BaseComponent, Loading } from '../defaults/defaults'
 // $FlowFixMe
 import Styles from '../../styles/styles'
-import { errorHandler, uploadPhotoToImgur } from '../../general/general'
+import { errorHandler, uploadPhotoToImgur, api } from '../../general/general'
 export { imageInputScene }
 
 const style = {
@@ -30,35 +32,16 @@ const style = {
 
 const ImageComp = ( props: Object ) => {
   return (
-    <Grid>
-      <Row 
-        size={3}
-      >
-        <FadeIn 
-          style={{ flex: 1 }}
-          placeholderStyle={{ backgroundColor: Styles.defaultSceneStyles.backgroundColor }}
-        >
-          <Image
-           resizeMode="contain"
-           style={{ flex: 1, marginBottom: 25 }} 
-           source={{ uri: props.uri }} 
-          />
-        </FadeIn>
-      </Row>
-      <Row 
-        size={1}
-        style={{ flex: 1, alignItems: 'stretch'}}
-      >
-        <View
-          style={{ flex: 1 }}
-        >
-          <Button 
-            title="Confirm"
-            onPress={ () => { props.onPress() } } 
-          />
-        </View>
-      </Row>
-    </Grid>
+    <FadeIn 
+      style={{ flex: 1 }}
+      placeholderStyle={{ backgroundColor: Styles.defaultSceneStyles.backgroundColor }}
+    > 
+      <Image 
+        resizeMode="contain" 
+        style={{ flex: 1 }} 
+        source={{ uri: props.uri }} 
+      />
+    </FadeIn>
   )
 }
 
@@ -66,7 +49,9 @@ class ImageInput extends BaseComponent {
 
   state: {
     imageData: string,
-    imageUrl: string
+    imageUrl: string,
+    imageText: string,
+    status: string
   }
 
   setState: Function
@@ -75,43 +60,89 @@ class ImageInput extends BaseComponent {
     super(props)
     this.state = {
       imageData: props.imageData,
-      imageUrl: ''
+      imageUrl: '',
+      imageText: '',
+      status: 'loadingImageUrl'
     }
   }
 
   componentDidMount () {
-    this.getPhoto()
+    this.photoHanlder()
   }
 
-  async getPhoto () {
+  async photoHanlder () {
     try {
-      const photoUrl = await uploadPhotoToImgur({ image: this.state.imageData }) 
-      this.setState({ imageUrl: photoUrl })
+      const imageUrl = await uploadPhotoToImgur({ image: this.state.imageData })
+      this.setState({ status: 'recevedImage', imageUrl: imageUrl })
+      const response = await fetch( `${api}image/?image=${imageUrl}` )
+      const imageText = ( await response.json() ).text
+      this.setState({ status: 'receivedText', imageText: imageText })
     }
-    catch(err) {
+    catch( err ) {
       errorHandler( err )
-      Actions.pop()
     }
   }
 
-  getText () {
-    alert( this.state.imageUrl )
+  renderData () {
+    let data
+    switch(this.state.status) {
+      case "receivedText": {
+        data = () => <Text> { this.state.imageText } </Text>
+        break;
+      }
+      case "recevedImage": {
+        data = () => <ImageComp uri={ this.state.imageUrl } />
+        break;
+      }
+      default: {
+        data = () => <Loading />
+        break;
+      }
+    }
+    return data()
+  }
+
+  renderData () {
+    let data
+    switch(this.state.status) {
+      case "receivedText": {
+        data = () => <Text> { this.state.imageText } </Text>
+        break;
+      }
+      default: {
+        data = () => this.renderLoading()
+        break;
+      }
+    }
+    return data()
+  }
+
+  renderLoading () {
+    return (
+      <View style={[style.container, { padding: 0 }]}>
+        <Text h4 style={{ textAlign: 'center' }}>
+          This can take some time
+        </Text>
+        <Text h4 style={{ textAlign: 'center' }}>
+          please stay patient <Emoji name="relaxed"/>
+        </Text>
+        <Spacer/>
+        <Spacer/>
+        <Loading />
+        <Spacer/>
+        <Spacer/>
+        {
+          this.state.imageUrl.length > 0 ? <ImageComp uri={ this.state.imageUrl } /> : <View/>
+        }
+      </View>
+    )
   }
 
   render () {
     return (
-      <View 
-        style={style.container}
-      >
+      <View style={style.container} >
         {
-          this.state.imageUrl.length > 0
-            ? 
-            <ImageComp 
-              onPress={ () => { this.getText() } } 
-              uri={ this.state.imageUrl } 
-            /> 
-            : 
-            <Loading/>
+          this.renderData()
         }
       </View>
     )

@@ -27,7 +27,7 @@ const Routes = () => {
     <ReducerRouterLayer>
       <Scene key="drawer" component={DrawerComp} open={false} >
         <Scene key='root' hideTabBar>
-          <Scene key='Discover' title='Discover' component={DiscoverComp} {...discoverScene} initial />
+          <Scene key='Discover' title='Legalesee' component={DiscoverComp} {...discoverScene} initial />
           <Scene key='ImageInput' title='Upload Image' component={ImageInputComp} {...imageInputScene} />
           <Scene key='PasteInput' title='Copy & Paste' component={PasteInputComp} {...pasteInputScene} />
           <Scene key='launch' title='Launch' component={LaunchComp} />

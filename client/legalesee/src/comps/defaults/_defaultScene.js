@@ -4,6 +4,8 @@
 
 import React from 'react'
 // $FlowFixMe
+import { View } from 'react-native'
+// $FlowFixMe
 import { Icon } from 'react-native-elements'
 // $FlowFixMe
 import { ActionConst, Actions } from 'react-native-router-flux'
@@ -26,10 +28,11 @@ const leftIcon = () => {
 
 const defaultScene = {
   navigationBarStyle: Style.navigationBarStyle,
-  leftButtonStyle: Style.leftButtonStyle,
   titleStyle: Style.titleStyle,
   type: ActionConst.REPLACE,
-  renderLeftButton: leftIcon
+  // leftButtonStyle: Style.leftButtonStyle,
+  // renderLeftButton: leftIcon
+  renderLeftButton: () => <View/>
 }
 
 export default defaultScene

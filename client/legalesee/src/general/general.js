@@ -10,3 +10,6 @@ export { uploadPhotoToImgur }
 
 import getPhoto from './getPhoto'
 export { getPhoto }
+
+import { api } from './api'
+export { api }
