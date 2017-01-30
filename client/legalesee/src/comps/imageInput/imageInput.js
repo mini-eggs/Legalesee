@@ -4,9 +4,11 @@
 
 import React from 'react'
 // $FlowFixMe
-import { View, Image } from 'react-native'
+import { View, Image, ScrollView } from 'react-native'
 // $FlowFixMe
 import Emoji from 'react-native-emoji'
+// $FlowFixMe
+import io from 'socket.io-client'
 // $FlowFixMe
 import { Row, Col, Grid, Text } from 'react-native-elements'
 // $FlowFixMe
@@ -18,6 +20,7 @@ import * as Progress from 'react-native-progress'
 import { Button, Spacer, backScene as imageInputScene, BaseComponent, Loading } from '../defaults/defaults'
 // $FlowFixMe
 import Styles from '../../styles/styles'
+import Theme from '../../styles/theme'
 import { errorHandler, uploadPhotoToImgur, api } from '../../general/general'
 export { imageInputScene }
 
@@ -51,7 +54,8 @@ class ImageInput extends BaseComponent {
     imageData: string,
     imageUrl: string,
     imageText: string,
-    status: string
+    status: string,
+    progress: number
   }
 
   setState: Function
@@ -62,51 +66,41 @@ class ImageInput extends BaseComponent {
       imageData: props.imageData,
       imageUrl: '',
       imageText: '',
-      status: 'loadingImageUrl'
+      status: 'loadingImageUrl',
+      progress: 0
     }
   }
 
   componentDidMount () {
-    this.photoHanlder()
+    this.photoHandler()
   }
 
-  async photoHanlder () {
+  async photoHandler () {
     try {
       const imageUrl = await uploadPhotoToImgur({ image: this.state.imageData })
-      this.setState({ status: 'recevedImage', imageUrl: imageUrl })
-      const response = await fetch( `${api}image/?image=${imageUrl}` )
-      const imageText = ( await response.json() ).text
-      this.setState({ status: 'receivedText', imageText: imageText })
+      this.setState({ status: 'recevedImage', imageUrl: imageUrl }, () => { this.imageEvents() })
     }
     catch( err ) {
       errorHandler( err )
     }
   }
 
-  renderData () {
-    let data
-    switch(this.state.status) {
-      case "receivedText": {
-        data = () => <Text> { this.state.imageText } </Text>
-        break;
-      }
-      case "recevedImage": {
-        data = () => <ImageComp uri={ this.state.imageUrl } />
-        break;
-      }
-      default: {
-        data = () => <Loading />
-        break;
-      }
-    }
-    return data()
+  imageEvents () {
+    const socket = io( api, { transports: ['websocket'] } )
+    socket.on('imageProgress', data => {
+      this.setState({ progress: data.progress })
+    })
+    socket.on('imageComplete', text => {
+      this.setState({ status: 'receivedText', imageText: text })
+    })
+    socket.emit('readImage', { image: this.state.imageUrl })
   }
 
   renderData () {
     let data
     switch(this.state.status) {
       case "receivedText": {
-        data = () => <Text> { this.state.imageText } </Text>
+        data = () => this.renderText()
         break;
       }
       default: {
@@ -115,6 +109,23 @@ class ImageInput extends BaseComponent {
       }
     }
     return data()
+  }
+
+  renderText () {
+    return (
+      <ScrollView
+        keyboardDismissMode={'on-drag'}
+        style={{ flex: 1 }}
+        keyboardShouldPersistTaps={false}
+        scrollEnabled={true}
+        horizontal={false}
+        showsVerticalScrollIndicator={false}
+      >
+        <Text> 
+          { this.state.imageText } 
+        </Text>
+      </ScrollView>
+    )
   }
 
   renderLoading () {
@@ -128,7 +139,18 @@ class ImageInput extends BaseComponent {
         </Text>
         <Spacer/>
         <Spacer/>
-        <Loading />
+        {
+          this.state.progress > 0 ?
+            <View style={{ alignItems: 'center' }}>
+               <Progress.Circle 
+                  progress={this.state.progress} 
+                  borderWidth={0}
+                  color={Theme.primaryColor}
+                />
+            </View>
+            :
+            <Loading />
+        }
         <Spacer/>
         <Spacer/>
         {
