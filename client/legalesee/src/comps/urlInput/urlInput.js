@@ -54,13 +54,13 @@ class PasteInput extends BaseComponent {
           underlineColorAndroid='transparent' 
           onChangeText={this.onChange.bind(this)} 
           value={this.state.content} 
-          placeholder="Enter content..." 
+          placeholder="Enter URL..." 
           autoCapitalize="none" 
           ref="MainInput" 
           autoCapitalize="none" 
           autoCorrect={false} 
           autoFocus={true} 
-          multiline={true}
+          multiline={false}
           keyboardType="default"
           onSubmitEditing={this.next} 
           returnKeyType="go"

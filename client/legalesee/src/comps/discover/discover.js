@@ -9,6 +9,7 @@ import { View } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 // $FlowFixMe
 import { Actions } from 'react-native-router-flux'
+import Theme from '../../styles/theme'
 import { Button, Spacer, defaultScene as discoverScene, BaseComponent } from '../defaults/defaults'
 import { getPhoto, errorHandler } from '../../general/general'
 export { discoverScene }
@@ -22,6 +23,13 @@ const style = {
   List: {
   },
   ListItem: {
+  },
+  titleStyle: {
+    fontSize: Theme.fontSize
+  } ,
+  listIcon: {
+    justifyContent: 'center', // ?? check later
+    alignItems: 'center'
   }
 }
 
@@ -72,9 +80,11 @@ class Discover extends BaseComponent {
               <ListItem
                 key={i}
                 title={item.title}
-                leftIcon={{name: item.icon}}
+                leftIcon={{ name: item.icon, style: style.listIcon }}
+                rightIcon={{ name: 'chevron-right', style: style.listIcon }}
                 containerStyle={style.ListItem}
                 onPress={item.onPress}
+                titleStyle={style.titleStyle}
               />
             ))
           }
@@ -85,9 +95,11 @@ class Discover extends BaseComponent {
               <ListItem
                 key={i}
                 title={item.title}
-                leftIcon={{name: item.icon}}
+                leftIcon={{ name: item.icon, style: style.listIcon }}
+                rightIcon={{ name: 'chevron-right', style: style.listIcon }}
                 containerStyle={style.ListItem}
                 onPress={item.onPress}
+                titleStyle={style.titleStyle}
               />
             ))
           }
