@@ -44,8 +44,10 @@ class ReadInput extends BaseComponent {
 
   render () {
     return (
-      <View style={style.container} >
-        <Text>test</Text>
+      <View style={style.container}>
+        <Text>
+          { this.state.inputText }
+        </Text>
       </View>
     )
   }

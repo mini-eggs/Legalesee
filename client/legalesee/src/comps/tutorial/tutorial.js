@@ -4,16 +4,29 @@
 
 import React from 'react'
 // $FlowFixMe
-import { View, TextInput, Alert, Text } from 'react-native'
+import { View, TextInput, Alert, Text, Dimensions } from 'react-native'
 // $FlowFixMe
 import { Actions } from 'react-native-router-flux'
 // $FlowFixMe
 import Swiper from 'react-native-swiper'
 import Theme from '../../styles/theme'
-import { Button, Spacer, backScene as tutorialScene, BaseComponent } from '../defaults/defaults'
+// $FlowFixMe
+import Sizes from '../../styles/device'
+import { Button, Spacer, backScene, BaseComponent } from '../defaults/defaults'
+
+const tutorialScene = {
+  ...backScene,
+  navigationBarStyle: {
+    ...backScene.navigationBarStyle,
+    backgroundColor: 'transparent'
+  }
+}
 export { tutorialScene }
 
-var styles = {
+const style = {
+  container: {
+    marginTop: -1 * Sizes.navigationBarHeight
+  },
   wrapper: {
   },
   slide1: {
@@ -54,17 +67,25 @@ class PasteInput extends BaseComponent {
 
   render () {
     return (
-      <Swiper style={styles.wrapper} showsButtons={false} height={200}>
-        <View style={styles.slide1}>
-          <Text style={styles.text}>Hello Swiper</Text>
-        </View>
-        <View style={styles.slide2}>
-          <Text style={styles.text}>Beautiful</Text>
-        </View>
-        <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
-        </View>
-      </Swiper>
+      <View style={style.container}>
+        <Swiper 
+          style={style.wrapper} 
+          showsButtons={false}
+          height={Dimensions.get('window').height}
+          dotColor={'#ffffff'}
+          activeDotColor={Theme.primaryColor}
+        >
+          <View style={style.slide1}>
+            <Text style={style.text}>Hello Swiper</Text>
+          </View>
+          <View style={style.slide2}>
+            <Text style={style.text}>Beautiful</Text>
+          </View>
+          <View style={style.slide3}>
+            <Text style={style.text}>And simple</Text>
+          </View>
+        </Swiper>
+      </View>
     )
   }
 }
