@@ -6,6 +6,8 @@ import React from 'react'
 // $FlowFixMe
 import { View } from 'react-native'
 // $FlowFixMe
+import { List, ListItem } from 'react-native-elements'
+// $FlowFixMe
 import { Actions } from 'react-native-router-flux'
 import { Button, Spacer, defaultScene as discoverScene, BaseComponent } from '../defaults/defaults'
 import { getPhoto, errorHandler } from '../../general/general'
@@ -15,8 +17,11 @@ const style = {
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    padding: 25
+    alignItems: 'stretch'
+  },
+  List: {
+  },
+  ListItem: {
   }
 }
 
@@ -33,33 +38,75 @@ class Discover extends BaseComponent {
   }
 
   render () {
+
+    const list = [
+      {
+        title: 'Copy & Paste',
+        icon: 'content-paste',
+        onPress: () => Actions.PasteInput()
+      },
+      {
+        title: 'Upload Photo',
+        icon: 'photo-camera',
+        onPress: () => this.ImageInput()
+      },
+      {
+        title: 'Enter URL',
+        icon: 'computer',
+        onPress: () => Actions.UrlInput()
+      },
+      {
+        title: 'Tutorial',
+        icon: 'help',
+        onPress: () =>  Actions.Tutorial()
+      }
+    ]
+
     return (
       <View style={style.container}>
-        <Button
-          onPress={ e => Actions.PasteInput() }
-          // icon={{name: 'touch-app', type: 'material-icons'}}
-          title='Copy & Paste'
-        />
-        <Spacer/>
-        <Spacer/>
-        <Button
-          onPress={ e => this.ImageInput() }
-          title='Upload Photo'
-        />
-        <Spacer/>
-        <Spacer/>
-        <Button
-          onPress={ e => alert('Enter URL') }
-          title='Enter URL'
-        />
-        <Spacer/>
-        <Spacer/>
-        <Button
-          onPress={ e => alert('Tutorial') }
-          title='Tutorial'
-        />
+        <List containerStyle={style.List} >
+          {
+            list.map((item, i) => (
+              <ListItem
+                key={i}
+                title={item.title}
+                leftIcon={{name: item.icon}}
+                containerStyle={style.ListItem}
+                onPress={item.onPress}
+              />
+            ))
+          }
+        </List>
       </View>
     )
+
+    // return (
+    //   <View style={style.container}>
+    //     <Button
+    //       onPress={ e => Actions.PasteInput() }
+    //       // icon={{name: 'touch-app', type: 'material-icons'}}
+    //       title='Copy & Paste'
+    //     />
+    //     <Spacer/>
+    //     <Spacer/>
+    //     <Button
+    //       onPress={ e => this.ImageInput() }
+    //       title='Upload Photo'
+    //     />
+    //     <Spacer/>
+    //     <Spacer/>
+    //     <Button
+    //       onPress={ e => alert('Enter URL') }
+    //       title='Enter URL'
+    //     />
+    //     <Spacer/>
+    //     <Spacer/>
+    //     <Button
+    //       onPress={ e => alert('Tutorial') }
+    //       title='Tutorial'
+    //     />
+    //   </View>
+    // )
   }
 }
 

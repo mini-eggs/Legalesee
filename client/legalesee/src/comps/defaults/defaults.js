@@ -19,3 +19,6 @@ export { BaseComponent }
 
 import Loading from './_loading'
 export { Loading }
+
+import backToHomeScene from './_backToHomeScene'
+export { backToHomeScene }

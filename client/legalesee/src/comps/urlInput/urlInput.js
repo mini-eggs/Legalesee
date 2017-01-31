@@ -8,8 +8,8 @@ import { View, TextInput, Alert } from 'react-native'
 // $FlowFixMe
 import { Actions } from 'react-native-router-flux'
 import Theme from '../../styles/theme'
-import { Button, Spacer, backScene as pasteInputScene, BaseComponent } from '../defaults/defaults'
-export { pasteInputScene }
+import { Button, Spacer, backScene as urlInputScene, BaseComponent } from '../defaults/defaults'
+export { urlInputScene }
 
 const style = {
   container: {
