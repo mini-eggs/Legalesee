@@ -10,7 +10,6 @@ import { Icon } from 'react-native-elements'
 // $FlowFixMe
 import { Scene, Modal, ActionConst, Actions } from 'react-native-router-flux'
 
-import LaunchComp from './components.examples/Launch'
 import DiscoverComp, { discoverScene } from './comps/discover/discover'
 import PasteInputComp, { pasteInputScene } from './comps/pasteInput/pasteInput'
 import ImageInputComp, { imageInputScene } from './comps/imageInput/imageInput'
@@ -36,7 +35,6 @@ const Routes = () => {
           <Scene key='ReadInput' title='Results' component={ReadInputComp} {...readInputScene} />
           <Scene key='UrlInput' title='URL' component={UrlInputComp} {...urlInputScene} />
           <Scene key='Tutorial' title='Tutorial' component={TutorialComp} {...tutorialScene} />
-          <Scene key='launch' title='Launch' component={LaunchComp} />
         </Scene>
       </Scene>
     </ReducerRouterLayer>

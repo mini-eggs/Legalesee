@@ -12,15 +12,15 @@ import Swiper from 'react-native-swiper'
 import Theme from '../../styles/theme'
 // $FlowFixMe
 import Sizes from '../../styles/device'
-import { Button, Spacer, backScene, BaseComponent } from '../defaults/defaults'
+import { Button, Spacer, backScene as tutorialScene, BaseComponent } from '../defaults/defaults'
 
-const tutorialScene = {
-  ...backScene,
-  navigationBarStyle: {
-    ...backScene.navigationBarStyle,
-    backgroundColor: 'transparent'
-  }
-}
+// const tutorialScene = {
+//   ...backScene,
+//   navigationBarStyle: {
+//     ...backScene.navigationBarStyle,
+//     backgroundColor: 'transparent'
+//   }
+// }
 export { tutorialScene }
 
 const style = {
@@ -28,24 +28,22 @@ const style = {
     marginTop: -1 * Sizes.navigationBarHeight
   },
   wrapper: {
+    backgroundColor: Theme.primaryColor
   },
   slide1: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB'
+    alignItems: 'center'
   },
   slide2: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5'
+    alignItems: 'center'
   },
   slide3: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9'
+    alignItems: 'center'
   },
   text: {
     color: '#fff',
@@ -72,8 +70,8 @@ class PasteInput extends BaseComponent {
           style={style.wrapper} 
           showsButtons={false}
           height={Dimensions.get('window').height}
-          dotColor={'#ffffff'}
-          activeDotColor={Theme.primaryColor}
+          dotColor={'#a8a8a8'}
+          activeDotColor={'#ffffff'}
         >
           <View style={style.slide1}>
             <Text style={style.text}>Hello Swiper</Text>
