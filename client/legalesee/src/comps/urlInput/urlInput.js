@@ -44,7 +44,7 @@ class PasteInput extends BaseComponent {
     this.setState({ content: txt })
   }
 
-  next = () => Actions.ReadInput({ inputText: this.state.content })
+  next = () => Actions.ReadInput({ inputText: this.state.content, inputType: 'url' })
 
   render () {
     return (

@@ -91,43 +91,10 @@ class ImageInput extends BaseComponent {
       this.setState({ progress: data.progress })
     })
     socket.on('imageComplete', text => {
-      // this.setState({ status: 'receivedText', imageText: text })
-      Actions.ReadInput({ inputText: text })
+      Actions.ReadInput({ inputText: text, inputType: 'html' })
     })
     socket.emit('readImage', { image: this.state.imageUrl })
   }
-
-  // renderData () {
-  //   let data
-  //   switch(this.state.status) {
-  //     case "receivedText": {
-  //       data = () => this.renderText()
-  //       break;
-  //     }
-  //     default: {
-  //       data = () => this.renderLoading()
-  //       break;
-  //     }
-  //   }
-  //   return data()
-  // }
-
-  // renderText () {
-  //   return (
-  //     <ScrollView
-  //       keyboardDismissMode={'on-drag'}
-  //       style={{ flex: 1 }}
-  //       keyboardShouldPersistTaps={false}
-  //       scrollEnabled={true}
-  //       horizontal={false}
-  //       showsVerticalScrollIndicator={false}
-  //     >
-  //       <Text> 
-  //         { this.state.imageText } 
-  //       </Text>
-  //     </ScrollView>
-  //   )
-  // }
 
   renderLoading () {
     return (
