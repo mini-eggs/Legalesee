@@ -40,7 +40,9 @@ class Discover extends BaseComponent {
       Actions.ImageInput({ imageData: await getPhoto() })
     }
     catch( err ) {
-      errorHandler( err )
+      // this could be the user cancelling
+      // not an error
+      // errorHandler( err )
     }
   }
 

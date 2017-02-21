@@ -15,12 +15,12 @@ const style = {
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    padding: 25
+    alignItems: 'stretch'
   },
   TextInput: {
     textAlignVertical: 'top',
-    minHeight: 40,
+    flex: 1,
+    padding: 25,
     fontSize: Theme.fontSize
   }
 }

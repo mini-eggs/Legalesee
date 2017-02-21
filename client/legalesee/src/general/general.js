@@ -13,3 +13,6 @@ export { getPhoto }
 
 import { api } from './api'
 export { api }
+
+import { HexToRGBA } from './hexToRGBA'
+export { HexToRGBA }

@@ -4,7 +4,9 @@
 
 import React from 'react'
 // $FlowFixMe
-import { View, TextInput, Alert, Text, Dimensions } from 'react-native'
+import { View, TextInput, Alert, Text, Dimensions, Image } from 'react-native'
+// $FlowFixMe
+import FadeIn from '@exponent/react-native-fade-in-image'
 // $FlowFixMe
 import { Actions } from 'react-native-router-flux'
 // $FlowFixMe
@@ -12,23 +14,35 @@ import Swiper from 'react-native-swiper'
 import Theme from '../../styles/theme'
 // $FlowFixMe
 import Sizes from '../../styles/device'
-import { Button, Spacer, backScene as tutorialScene, BaseComponent } from '../defaults/defaults'
+import { HexToRGBA } from '../../general/general'
+import { Button, Spacer, backScene, BaseComponent } from '../defaults/defaults'
 
-// const tutorialScene = {
-//   ...backScene,
-//   navigationBarStyle: {
-//     ...backScene.navigationBarStyle,
-//     backgroundColor: 'transparent'
-//   }
-// }
+const tutorialScene = {
+  ...backScene,
+  navigationBarStyle: {
+    ...backScene.navigationBarStyle,
+    backgroundColor: 'transparent'
+  }
+}
 export { tutorialScene }
 
+const backgroundImage = 'https://i.imgur.com/9H7ZueZ.jpg'
+
+const { height } = Dimensions.get('window')
+
 const style = {
+  fadeInContainer: {
+    height: height,
+    marginBottom: -1 * height
+  },
+  fadeIn: {
+    backgroundColor: Theme.primaryColor
+  },
   container: {
     marginTop: -1 * Sizes.navigationBarHeight
   },
   wrapper: {
-    backgroundColor: Theme.primaryColor
+    backgroundColor: HexToRGBA( Theme.primaryColor, 0.5)
   },
   slide1: {
     flex: 1,
@@ -66,6 +80,17 @@ class PasteInput extends BaseComponent {
   render () {
     return (
       <View style={style.container}>
+        <FadeIn 
+          style={style.fadeInContainer}
+          placeholderStyle={style.fadeIn}
+        > 
+          <Image 
+            resizeMode="cover" 
+            style={{ flex: 1 }} 
+            source={{ uri: backgroundImage }}
+          >
+          </Image>
+        </FadeIn>
         <Swiper 
           style={style.wrapper} 
           showsButtons={false}

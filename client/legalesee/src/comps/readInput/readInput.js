@@ -79,21 +79,22 @@ class ReadInput extends BaseComponent {
       const res = await fetch( api + 'legalesee/read' , props )
       const data = await res.json()
       if( parseInt( data.status ) === 1 ) {
+        console.log( data )
         this.setState({ responseData: data.response, loading: false })
       }
       else {
-        // error
+        errorHandler( data )
       }
     }
     catch( err ) {
-      console.log( err )
+      errorHandler( err )
     }
   }
 
   renderData () {
     return (
       <ScrollView
-        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
       >
         <List containerStyle={style.List} >
           {
